@@ -6,7 +6,7 @@ import NavbarLinks from '@/layouts/components/Navbar/NavbarLinks'
 class Header extends Component {
   render() {
     return (
-      <Navbar bg="light" expand="lg" className="navbar-default">
+      <Navbar expand="lg" className="navbar-default">
         <Navbar.Brand href="#">{this.props.brandText}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         

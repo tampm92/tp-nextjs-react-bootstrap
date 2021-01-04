@@ -1,37 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-import Header from '@/layouts/components/Header'
+import Sidebar from '@/layouts/components/Sidebar'
 import Navbar from '@/layouts/components/Navbar'
 import Footer from '@/layouts/components/Footer'
 
 const routes = [{
-  path: '/dashboard',
+  path: '/',
   name: 'Dashboard',
   icon: 'pe-7s-graph',
-  layout: '/admin'
 },
 {
   path: '/user',
   name: 'User Profile',
   icon: 'pe-7s-user',
-  layout: '/admin'
 }]
 
-const DefaultLayout = ({ children }) => {
-  const imageUrl = '/img/sidebar-3.jpg'
-  const hasImage = true
-  const color = 'black'
+class DefaultLayout extends Component {
+  render() {
+    const { children } = this.props
+    const imageUrl = '/img/sidebar-3.jpg'
+    const hasImage = false
+    const color = '#00e874'
 
-  return (
-    <div className="wrapper">
-      <Header routes={routes} image={imageUrl} color={color} hasImage={hasImage} />
-      <div id="main-panel" className="main-panel">
-        <Navbar brandText="Dashboard"/>
-        {children}
-        <Footer />
-      </div>
-    </ div>
-  )
+    return (
+      <div className="wrapper">
+        <Sidebar routes={routes} image={imageUrl} color={color} hasImage={hasImage} />
+        <div id="main-panel" className="main-panel">
+          <Navbar brandText="Dashboard"/>
+          {children}
+          <Footer />
+        </div>
+      </ div>
+    )
+  }
 }
 
 export default DefaultLayout

@@ -9,25 +9,18 @@ class Footer extends Component {
           <nav className="float-left">
             <ul>
               <li>
-                <a href="#pablo">Home</a>
+                <a href="https://github.com/tampm92/tp-nextjs-react-bootstrap" target="_blank">Git</a>
               </li>
               <li>
-                <a href="#pablo">Company</a>
-              </li>
-              <li>
-                <a href="#pablo">Portfolio</a>
-              </li>
-              <li>
-                <a href="#pablo">Blog</a>
+                <a href="https://tampm.com" target="_blank">TP Website</a>
               </li>
             </ul>
           </nav>
           <p className="copyright float-right">
-            &copy; {new Date().getFullYear()}{" "}
-            <a href="http://www.creative-tim.com?ref=lbr-footer">
-              Creative Tim
+            &copy; {new Date().getFullYear()}{" - "}
+            <a href="https://tampm.com" target="_blank" className="text-success">
+              tampm
             </a>
-            , made with love for a better web
           </p>
         </Container>
       </footer>

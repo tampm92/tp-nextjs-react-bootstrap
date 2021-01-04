@@ -23,7 +23,7 @@ class NavbarLinks extends Component {
           </Nav.Link>
         </Nav>
         <Nav>
-          <NavDropdown title={lang} id="collasible-nav-dropdown-lang" alignRight>
+          <NavDropdown alignRight title={lang} id="collasible-nav-dropdown-lang">
             <NavDropdown.Item href="#lang/en">EN</NavDropdown.Item>
             <NavDropdown.Item href="#lang/fr">FR</NavDropdown.Item>
             <NavDropdown.Item href="#lang/vn">VN</NavDropdown.Item>

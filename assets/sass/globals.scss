@@ -1,0 +1,43 @@
+@import "lib/variables";
+@import "lib/mixins";
+
+// Core CSS
+@import "lib/typography";
+@import "lib/misc";
+@import "lib/sidebar-and-main-panel";
+@import "lib/badge";
+
+@import "lib/navbars";
+@import "lib/footers";
+
+// Fancy Stuff
+@import "lib/dropdown";
+@import "lib/cards";
+
+.illustration {
+    background: #e0ffeb;
+    color:#4bbf73;
+
+    .illustration-text {
+        color:#4bbf73;
+    }
+}
+
+.feather {
+    width: 18px;
+    height: 18px;
+}
+
+.stat {
+    background: #e0eafc;
+    border-radius: 50%;
+    padding: .75rem;
+    width: 48px;
+    height: 48px;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        color:#4bbf73!important;
+    }
+}
