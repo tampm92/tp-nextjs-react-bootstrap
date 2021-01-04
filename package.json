@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3030",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@reactchartjs/react-chart.js": "^1.0.0-rc.3",
