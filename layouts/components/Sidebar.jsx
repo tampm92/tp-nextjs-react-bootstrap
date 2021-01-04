@@ -7,9 +7,8 @@ import TpLogo from '@/assets/svg/TpLogo.svg'
 
 const logo = '/img/reactlogo.png'
 
-const Header = (props) => {
+const Sidebar = (props) => {
   const { asPath } = useRouter()
-  const [width, setwidth] = useState(1000)
   const activeRoute = (href) => {
     return asPath === href ? 'active' : ''
   }
@@ -46,7 +45,6 @@ const Header = (props) => {
       </div>
       <div className="sidebar-wrapper">
         <ul className="nav d-block">
-          {width <= 991 ? <NavbarLinks /> : null}
           {props.routes.map((prop, key) => {
             if (!prop.redirect)
               return (
@@ -70,31 +68,4 @@ const Header = (props) => {
   )
 }
 
-// class Header extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       width: 1000
-//     }
-//   }
-//   activeRoute(routeName) {
-//     return this.props.location.pathname.indexOf(routeName) > -1 ? 'active' : ''
-//   }
-//   updateDimensions() {
-//     this.setState({ width: 1000 })
-//   }
-//   componentDidMount() {
-//     this.updateDimensions();
-//     window.addEventListener('resize', this.updateDimensions.bind(this))
-//   }
-//   render() {
-//     const sidebarBackground = {
-//       backgroundImage: 'url(' + this.props.image + ')'
-//     };
-//     return (
-      
-//     );
-//   }
-// }
-
-export default Header
+export default Sidebar

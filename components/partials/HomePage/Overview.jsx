@@ -5,7 +5,7 @@ class Overview extends Component {
   render() {
     return (
       <Row>
-        <Col lg={3} sm={6} className="d-flex">
+        <Col lg={3} md={6} sm={12} className="d-flex">
           <Card className="illustration flex-fill">
             <Card.Body className="p-0 d-flex flex-fill">
               <div className="row no-gutters w-100">
@@ -22,7 +22,7 @@ class Overview extends Component {
             </Card.Body>
           </Card>
         </Col>
-        <Col lg={3} sm={6} className="d-flex">
+        <Col lg={3} md={6} sm={12} className="d-flex">
           <Card className="flex-fill">
             <Card.Body className="py-4">
               <Media>
@@ -43,7 +43,7 @@ class Overview extends Component {
             </Card.Body>
           </Card>
         </Col>
-        <Col lg={3} sm={6} className="d-flex">
+        <Col lg={3} md={6} sm={12} className="d-flex">
           <Card className="flex-fill">
             <Card.Body className="py-4">
               <Media>
@@ -64,7 +64,7 @@ class Overview extends Component {
             </Card.Body>
           </Card>
         </Col>
-        <Col lg={3} sm={6} className="d-flex">
+        <Col lg={3} md={6} sm={12} className="d-flex">
           <Card className="flex-fill">
             <Card.Body className="py-4">
               <Media>

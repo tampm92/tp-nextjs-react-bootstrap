@@ -13,7 +13,7 @@ class NavbarLinks extends Component {
 
     return (
       <>
-        <Nav className="mr-auto">
+        <Nav className="mr-auto navbar-nav">
           <Nav.Link href="#">
             <i className="fa fa-dashboard" />
           </Nav.Link>
@@ -22,8 +22,8 @@ class NavbarLinks extends Component {
             <p className="d-lg-none d-md-none">Search</p>
           </Nav.Link>
         </Nav>
-        <Nav>
-          <NavDropdown alignRight title={lang} id="collasible-nav-dropdown-lang">
+        <Nav className="navbar-nav">
+          <NavDropdown title={lang} id="collasible-nav-dropdown-lang" alignRight>
             <NavDropdown.Item href="#lang/en">EN</NavDropdown.Item>
             <NavDropdown.Item href="#lang/fr">FR</NavDropdown.Item>
             <NavDropdown.Item href="#lang/vn">VN</NavDropdown.Item>
@@ -33,7 +33,7 @@ class NavbarLinks extends Component {
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
+            <NavDropdown.Item href="/login">Logout</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </>
