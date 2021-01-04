@@ -5,7 +5,7 @@ import TpCard from '@/components/common/Card'
 
 const Details = () => {
   return (
-    <TpCard title="Edit Profile" className="user-detail flex-fill">
+    <TpCard title="Edit Profile" className="user-edit flex-fill">
       <Form>
         <Form.Group controlId="editForm.ControlInput1">
           <Form.Label>First Name</Form.Label>

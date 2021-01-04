@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useRouter } from 'next/router'
 
 import Sidebar from '@/layouts/components/Sidebar'
 import Navbar from '@/layouts/components/Navbar'
@@ -15,24 +16,30 @@ const routes = [{
   icon: 'pe-7s-user',
 }]
 
-class DefaultLayout extends Component {
-  render() {
-    const { children } = this.props
-    const imageUrl = '/img/sidebar-3.jpg'
-    const hasImage = false
-    const color = '#00e874'
+const DefaultLayout = (props) => {
+  const imageUrl = '/img/sidebar-3.jpg'
+  const hasImage = false
+  const color = '#00e874'
+  const { asPath } = useRouter()
 
-    return (
-      <div className="wrapper">
-        <Sidebar routes={routes} image={imageUrl} color={color} hasImage={hasImage} />
-        <div id="main-panel" className="main-panel">
-          <Navbar brandText="Dashboard"/>
-          {children}
-          <Footer />
-        </div>
-      </ div>
-    )
+  const getCurrentBrandText = () => {
+    const currentBrandText = routes.find(route => {
+      return asPath === route.path
+    })
+
+    return currentBrandText ? currentBrandText.name : 'Brand'
   }
+
+  return (
+    <div className="wrapper">
+      <Sidebar routes={routes} image={imageUrl} color={color} hasImage={hasImage} />
+      <div id="main-panel" className="main-panel">
+        <Navbar brandText={getCurrentBrandText()}/>
+        {props.children}
+        <Footer />
+      </div>
+    </ div>
+  )
 }
 
 export default DefaultLayout
