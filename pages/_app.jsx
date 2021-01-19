@@ -7,6 +7,7 @@ import '@/assets/css/pe-icon-7-stroke.css'
 import '@/assets/sass/globals.scss'
 
 import LayoutDefault from '@/layouts/default'
+import { AuthProvider, ProtectRoute } from '@/auth'
 
 class MyApp extends App {
   componentDidMount() {
@@ -78,9 +79,13 @@ class MyApp extends App {
             rel="stylesheet"
           />
         </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AuthProvider>
+          <ProtectRoute>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ProtectRoute>
+        </AuthProvider>
       </React.Fragment>
     )
   }

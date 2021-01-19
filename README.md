@@ -7,6 +7,8 @@
 - [React Chartjs](http://reactchartjs.github.io/react-chartjs-2/)
 - [React Toastify](https://github.com/fkhadra/react-toastify)
 
+https://colinhacks.com/essays/nextjs-firebase-authentication
+
 ## Create a Next.js App
 
 ```bash

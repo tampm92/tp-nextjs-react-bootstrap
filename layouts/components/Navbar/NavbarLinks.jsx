@@ -1,44 +1,58 @@
 import React, { Component } from 'react'
 import { Nav, NavDropdown, Image } from 'react-bootstrap'
 
-class NavbarLinks extends Component {
-  render() {
-    const account = (
-      <Image className="account" src="https://demos.creative-tim.com/light-bootstrap-dashboard-react/static/media/face-3.ce7a6b79.jpg" roundedCircle />
-    )
+import { useAuth } from '@/auth'
 
-    const lang = (
-      <i className="fa fa-globe" />
-    )
+const NavbarLinks = () => {
+  const { isAuthenticated, user, signOut } = useAuth()
 
-    return (
-      <>
-        <Nav className="mr-auto navbar-nav">
-          <Nav.Link href="#">
-            <i className="fa fa-dashboard" />
+  const lang = (
+    <i className="fa fa-globe" />
+  )
+
+  const tpSignOut = async () => {
+    await signOut()
+  }
+
+  return (
+    <>
+      <Nav className="mr-auto navbar-nav">
+        <Nav.Link href="#">
+          <i className="fa fa-dashboard" />
+        </Nav.Link>
+        <Nav.Link href="#">
+          <i className="fa fa-search" />
+          <p className="d-lg-none d-md-none">Search</p>
+        </Nav.Link>
+      </Nav>
+      <Nav className="navbar-nav">
+        <NavDropdown title={lang} id="collasible-nav-dropdown-lang" alignRight>
+          <NavDropdown.Item href="#lang/en">EN</NavDropdown.Item>
+          <NavDropdown.Item href="#lang/fr">FR</NavDropdown.Item>
+          <NavDropdown.Item href="#lang/vn">VN</NavDropdown.Item>
+        </NavDropdown>
+        { !isAuthenticated && <> 
+          <Nav.Link href="/login">
+            <i className="fa fa-sign-in fa-lg" />
+            <p className="d-lg-none d-md-none">Login</p>
           </Nav.Link>
-          <Nav.Link href="#">
-            <i className="fa fa-search" />
-            <p className="d-lg-none d-md-none">Search</p>
-          </Nav.Link>
-        </Nav>
-        <Nav className="navbar-nav">
-          <NavDropdown title={lang} id="collasible-nav-dropdown-lang" alignRight>
-            <NavDropdown.Item href="#lang/en">EN</NavDropdown.Item>
-            <NavDropdown.Item href="#lang/fr">FR</NavDropdown.Item>
-            <NavDropdown.Item href="#lang/vn">VN</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown title={account} id="collasible-nav-dropdown-account" alignRight>
+        </>
+        }
+        { isAuthenticated && <> 
+          <NavDropdown title={
+            <Image className="account" src={user.photoURL} roundedCircle />
+          } id="collasible-nav-dropdown-account" alignRight>
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/login">Logout</NavDropdown.Item>
+            <NavDropdown.Item onClick={tpSignOut}>Logout</NavDropdown.Item>
           </NavDropdown>
-        </Nav>
-      </>
-    );
-  }
+        </>
+        }
+      </Nav>
+    </>
+  )
 }
 
 export default NavbarLinks

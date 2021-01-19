@@ -1,20 +1,12 @@
 import React, { Component } from 'react'
 import { useRouter } from 'next/router'
 
+import routes from '@/auth/routes'
 import Sidebar from '@/layouts/components/Sidebar'
 import Navbar from '@/layouts/components/Navbar'
 import Footer from '@/layouts/components/Footer'
 
-const routes = [{
-  path: '/',
-  name: 'Dashboard',
-  icon: 'pe-7s-graph',
-},
-{
-  path: '/user',
-  name: 'User Profile',
-  icon: 'pe-7s-user',
-}]
+const routesShowed = routes.filter(item => item.isShowed)
 
 const DefaultLayout = (props) => {
   const imageUrl = '/img/sidebar-3.jpg'
@@ -23,7 +15,7 @@ const DefaultLayout = (props) => {
   const { asPath } = useRouter()
 
   const getCurrentBrandText = () => {
-    const currentBrandText = routes.find(route => {
+    const currentBrandText = routesShowed.find(route => {
       return asPath === route.path
     })
 
@@ -32,7 +24,7 @@ const DefaultLayout = (props) => {
 
   return (
     <div className="wrapper">
-      <Sidebar routes={routes} image={imageUrl} color={color} hasImage={hasImage} />
+      <Sidebar routes={routesShowed} image={imageUrl} color={color} hasImage={hasImage} />
       <div id="main-panel" className="main-panel">
         <Navbar brandText={getCurrentBrandText()}/>
         {props.children}
