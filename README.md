@@ -1,128 +1,185 @@
-# Setup
+# <h1 align="center" style="font-weight: bold; margin-top: 20px; margin-bottom: 20px;">TP NextJS Firebase React-Bootstrap</h1>
+  
+<h3 align="center" style="font-weight: bold; margin-top: 20px; margin-bottom: 20px;">Guide setup firebase for nextjs with Bootstrap CSS</h3>
+  
+<p align="center">
+    <a href="#changelog"><img src="https://img.shields.io/github/release-pre/nqtronix/git-template.svg" alt="release: NA"></a>
+    <a href="https://github.com"><img src="https://img.shields.io/badge/platform-github.com-blue.svg" alt="platform: github.com"></a>
+    <a href="#status"><img src="https://img.shields.io/badge/status-maintained-green.svg" alt="status: maintained"></a>
+    <a href="https://github.com/nqtronix/git-template/issues"><img src="https://img.shields.io/github/issues/nqtronix/git-template.svg" alt="issues: NA"></a>
+    <a href="#license"><img src="https://img.shields.io/github/license/nqtronix/git-template.svg" alt="license: NA"></a>
+</p>
+  
+<p align="center">
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#support">Need Help?</a> •
+  <a href="#about">About</a> •
+  <a href="#license">License</a>
+</p>
+  
+<br/>
 
-## Referents
+## Introduction
 
-- [ReactJS](https://reactjs.org/)
-- [NextJS Basic Setup](https://nextjs.org/learn/basics/create-nextjs-app)
-- [React Chartjs](http://reactchartjs.github.io/react-chartjs-2/)
-- [React Toastify](https://github.com/fkhadra/react-toastify)
+1. You want integrated auth to your `NextJS project` and you choose `Firebase`.
+2. This project will help you understand and can create a `React Context` to manager `Auth with Firebase`
+  
+**TP NextJS Firebase React-Bootstrap** is a small project for basic setup Firebase for NextJS. And it will use UI farmwork [React Bootstrap](react-bootstrap)
 
-https://colinhacks.com/essays/nextjs-firebase-authentication
+<br/>
+  
+## Key Features
 
-## Create a Next.js App
+- **Next JS**
+- **Firebase**
+- **react-bootstrap**
+  
+<br/>
+  
+## Usage
 
-```bash
-npx create-next-app
-# or
-yarn create next-app
+```sh
+# install libs
+yarn
+# run dev
+yarn dev
+# run prod
+yarn build
+yarn start
 ```
 
-## Libs
+This is post-code descriptive text.
 
-```bash
-yarn add @zeit/next-css @zeit/next-sass bootstrap react-bootstrap
-```
+<br/>
+  
+## Getting Started
 
-## Setup base
-
-Create jsconfig.json with content
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "exclude": ["node_modules", "out"]
-}
-```
-
-Create next.config.js with content
+### **Structure**
 
 ```js
-const withSass = require('@zeit/next-sass')
-const withCSS = require('@zeit/next-css')
-
-module.exports = withSass(withCSS({
-  webpack: (config, options) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
-      use: ['@svgr/webpack'],
-    });
-    
-    config.resolve.alias['@'] = __dirname
-
-    return config
-  },
-}))
+.
+├── 📁 assets
+│   ├── 📁 styles
+│   │   └── 📝 globals.scss
+│   └── 📁 images
+├── 📁 auth
+│   ├── 📝 fireinit.jsx
+│   ├── 📝 index.jsx
+│   └── 📝 routes.jsx
+├── 📁 components
+│   ├── 📁 common
+│   └── 📁 partials
+├── 📁 layouts
+│   ├── 📁 components
+│   └── 📝 default.jsx
+├── 📁 pages
+│   ├── 📝 _app.jsx
+│   ├── 📝 index.jsx
+│   ├── 📝 login.jsx
+│   └── 📝 user.jsx
+├── 📁 public
+├── 📁 shared
+│   ├── 📝config.jsx
+│   └── 📁 services
+├── 📝 .env
+├── 📝 .env.development
+├── 📝 .env.production
+├── 📝 jsconfig.js
+├── 📝 next.config.js
+└── 📝 README.md
 ```
 
-Update `pages/_app.js`
+<br/>
 
-```jsx
-import React from "react"
-import App from 'next/app'
-import Head from 'next/head'
+### **Prerequisites**
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '@/assets/sass/globals.scss'
+- [Node.js](https://nodejs.org/en)
 
-import LayoutDefault from '@/layouts/default'
+- [yarn](https://yarnpkg.com/getting-started/install)
 
-class MyApp extends App {
-  componentDidMount() {
-    let comment = document.createComment(`
-=========================================================
-* TP NextJS React-Bootstrap
-=========================================================
+  ```sh
+  npm install -g yarn
+  ```
+  
+## Documentation
 
-* Website: https://tampm.com
-=========================================================
-    `)
-    document.insertBefore(comment, document.documentElement)
-  }
+### **Configuration**
 
-  static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
+- Add file `.env`
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
+  ```js
+  NEXT_PUBLIC_APP_NAME=
+  NEXT_PUBLIC_FIREBASE_API_KEY=
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+  NEXT_PUBLIC_FIREBASE_DATABASE_URL=
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+  NEXT_PUBLIC_FIREBASE_APP_ID=
+  NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+  ```
 
-    return { pageProps }
-  }
+Then your ENV will be loaded by `/shared/config.jsx`. And you can import this file to use config.
 
-  render() {
-    const { Component, pageProps } = this.props
+<br/>
 
-    const Layout = Component.layout || LayoutDefault
+### **API**
 
-    return (
-      <React.Fragment>
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-          <meta charSet="utf-8" />
-          <meta name="theme-color" content="#000000" />
-          <title>TP NextJS React-Bootstrap</title>
-        </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </React.Fragment>
-    )
-  }
-}
+This section provides documentation on how each function in **TP NextJS Firebase React-Bootstrap** works.
 
-export default MyApp
-```
+<br/>
 
-## Run App
-```bash
-yarn
-yarn dev
-```
+### **Performance and testing**
+
+Any of testing activities and reports goes here.
+
+<br/>
+
+## Support
+  
+### **Get Help**
+  
+**You have a question or problem wasn't solved?** No worries! Just open up a new issue in the `GitHub issue tracker`. Please provide all information to reproduce your problem. If you don't have a GitHub account, you can [contact](#contact) me directly.
+  
+<br/>
+  
+## About
+
+### **Known Issues**
+  
+ - none (that are reported)
+
+<br/>
+  
+### **Contact**
+  
+If you haven't done so already, please check out [Get Help](#get-help) for the fastest possible help on your issue. Alternatively you can get in touch with me by:
+
+- Email: phanminhtam1992@gmail.com
+- LinkedIn: http://linkedin.com/in/tampm
+- Where I earn my $$$: https://www.upwork.com/fl/tampm
+  
+<br/>
+
+## License
+
+This project is proudly licensed under the [MIT license][git-license].
+
+<!-- LINKS -->
+<!-- in-line references: websites -->
+[tampm.com]:https://tampm.com
+[react-bootstrap]:https://react-bootstrap.github.io/
+[shields.io]:https://shields.io
+[hackaday.io]:https://hackaday.io
+[semver.org]:https://semver.org
+[conventionalcommits.org]:https://conventionalcommits.org  
+[backToTopButton]:http://randojs.com/images/backToTopButton.png
+
+<!-- in-line references to github -->
+
+[git-profile]:https://github.com/nqtronix
+[git-issues]:https://github.com/nqtronix/git-template/issues
+[git-readme]:README.md
+[git-license]:LICENSE.md
+[git-contribute]:CONTRIBUTING.md
