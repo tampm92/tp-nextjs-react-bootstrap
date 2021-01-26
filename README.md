@@ -3,11 +3,10 @@
 <h3 align="center" style="font-weight: bold; margin-top: 20px; margin-bottom: 20px;">Guide setup firebase for nextjs with Bootstrap CSS</h3>
   
 <p align="center">
+    <a href="https://github.com/tampm92/tp-nextjs-react-bootstrap"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/tampm92/tp-nextjs-react-bootstrap/build"></a>
     <a href="#changelog"><img src="https://img.shields.io/github/release-pre/nqtronix/git-template.svg" alt="release: NA"></a>
-    <a href="https://github.com"><img src="https://img.shields.io/badge/platform-github.com-blue.svg" alt="platform: github.com"></a>
-    <a href="#status"><img src="https://img.shields.io/badge/status-maintained-green.svg" alt="status: maintained"></a>
-    <a href="https://github.com/nqtronix/git-template/issues"><img src="https://img.shields.io/github/issues/nqtronix/git-template.svg" alt="issues: NA"></a>
-    <a href="#license"><img src="https://img.shields.io/github/license/nqtronix/git-template.svg" alt="license: NA"></a>
+    <a href="#node-current"><img alt="node-current" src="https://img.shields.io/node/v/next"></a>
+    <a href="#license"><img alt="GitHub" src="https://img.shields.io/github/license/tampm92/tp-nextjs-react-bootstrap"></a>
 </p>
   
 <p align="center">
@@ -170,16 +169,11 @@ This project is proudly licensed under the [MIT license][git-license].
 <!-- in-line references: websites -->
 [tampm.com]:https://tampm.com
 [react-bootstrap]:https://react-bootstrap.github.io/
-[shields.io]:https://shields.io
-[hackaday.io]:https://hackaday.io
-[semver.org]:https://semver.org
-[conventionalcommits.org]:https://conventionalcommits.org  
 [backToTopButton]:http://randojs.com/images/backToTopButton.png
 
 <!-- in-line references to github -->
 
-[git-profile]:https://github.com/nqtronix
-[git-issues]:https://github.com/nqtronix/git-template/issues
+[git-profile]:https://github.com/tampm92
 [git-readme]:README.md
 [git-license]:LICENSE.md
 [git-contribute]:CONTRIBUTING.md
