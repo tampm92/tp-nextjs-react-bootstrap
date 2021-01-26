@@ -4,7 +4,7 @@
   
 <p align="center">
     <a href="https://github.com/tampm92/tp-nextjs-react-bootstrap"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/tampm92/tp-nextjs-react-bootstrap/build"></a>
-    <a href="#changelog"><img src="https://img.shields.io/github/release-pre/nqtronix/git-template.svg" alt="release: NA"></a>
+    <a href="#last-commit"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tampm92/tp-nextjs-react-bootstrap"></a>
     <a href="#node-current"><img alt="node-current" src="https://img.shields.io/node/v/next"></a>
     <a href="#license"><img alt="GitHub" src="https://img.shields.io/github/license/tampm92/tp-nextjs-react-bootstrap"></a>
 </p>
@@ -30,10 +30,11 @@
   
 ## Key Features
 
-- **Next JS**
-- **Firebase**
-- **react-bootstrap**
-  
+- **[Next JS](https://nextjs.org/docs/getting-started)**
+- **[Firebase](https://firebase.google.com/docs/auth/web/google-signin)**
+- **[react-bootstrap](https://react-bootstrap.github.io)**
+- **[TP NextJS](https://tampm.com/blog/next-js/)**
+
 <br/>
   
 ## Usage
@@ -93,8 +94,8 @@ This is post-code descriptive text.
 
 ### **Prerequisites**
 
+- [Firebase](https://firebase.google.com/docs/web/setup)
 - [Node.js](https://nodejs.org/en)
-
 - [yarn](https://yarnpkg.com/getting-started/install)
 
   ```sh
@@ -125,7 +126,113 @@ Then your ENV will be loaded by `/shared/config.jsx`. And you can import this fi
 
 ### **API**
 
-This section provides documentation on how each function in **TP NextJS Firebase React-Bootstrap** works.
+1. Setup `firebase client` in file `auth/fireinit.jsx`
+
+    ```jsx
+    import Firebase from 'firebase'
+
+    import config from '@/shared/config'
+    var firebase = !Firebase.apps.length ? Firebase.initializeApp(config.firebase) : Firebase.app()
+
+    export const GoogleAuthProvider = new Firebase.auth.GoogleAuthProvider()
+    export const auth = firebase.auth()
+    export const db = firebase.firestore()
+
+    // Export types that exists in Firestore
+    export const {
+      Timestamp,
+      GeoPoint,
+      FieldValue
+    } = Firebase.firestore
+    ```
+
+2. Create a Context and provider in file `auth/index.jsx`
+
+    ```jsx
+    import React, { useState, useEffect, useContext, createContext } from 'react'
+
+    import { auth, GoogleAuthProvider } from '@/auth/fireinit'
+
+    const AuthContext = createContext({
+      isAuthenticated: false,
+      user: {},
+    })
+
+    export function AuthProvider({ children }) {
+      const [user, setUser] = useState(null)
+
+      // handle auth logic here...
+
+      return (
+        <AuthContext.Provider value={{ isAuthenticated: !!user, user }}>{children}</AuthContext.Provider>
+      )
+    }
+
+    export const useAuth = () => {
+      return useContext(AuthContext)
+    }
+    ```
+
+- Now let's add a useEffect hook that initializes our Firebase authentication listener:
+  
+    ```jsx
+    useEffect(() => {
+      return auth.onAuthStateChanged(async (user) => {
+        console.log(`token changed!`)
+        
+        if (!user) {
+          console.log(`no token found...`)
+          setUser(null)
+        } else {
+          console.log(`updating token...`, user)
+          setUser(user)
+        }
+        
+        setLoading(false)
+      })
+    }, [])
+    ```
+
+3. Add your provider to `pages/_app.jsx`
+
+    ```jsx
+    import type { AppProps } from 'next/app'
+    import { AuthProvider } from '@/auth'
+
+    function App({ Component, pageProps }: AppProps) {
+      return (
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
+      );
+    }
+    export default App
+    ```
+
+4. Get current user in `pages` or `components`
+
+    ```jsx
+    import { useAuth } from '@/auth'
+
+    const UserPage = () => {
+      const { user } = useAuth()
+      console.log(user)
+
+      return (
+        <div className="content min-vh-100">
+          <h1>Name: {user.displayName}</h1>
+        </div>
+      )
+    }
+
+    export default UserPage
+    ```
+
+5. Advance
+
+- `signIn/signOut` functions: please check in `auth/index.jsx`
+- `Loading`: when app run, it need a litle times to load user. So you need show a `loader effect`. You can find it in `auth/index.jsx`
+- `ProtectRoute`: You can see how setup a protect routers with component `ProtectRoute` in `auth/index.jsx`. Then you add it to `pages/_app.jsx`
 
 <br/>
 
@@ -169,11 +276,9 @@ This project is proudly licensed under the [MIT license][git-license].
 <!-- in-line references: websites -->
 [tampm.com]:https://tampm.com
 [react-bootstrap]:https://react-bootstrap.github.io/
-[backToTopButton]:http://randojs.com/images/backToTopButton.png
 
 <!-- in-line references to github -->
 
 [git-profile]:https://github.com/tampm92
 [git-readme]:README.md
 [git-license]:LICENSE.md
-[git-contribute]:CONTRIBUTING.md

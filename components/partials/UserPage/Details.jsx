@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Image } from 'react-bootstrap'
 
-import { useAuth } from '@/auth'
 import TpCard from '@/components/common/Card'
 
 const Details = (props) => {
-  const { user } = useAuth()
-
   return (
     <TpCard title="Profile Details" className="user-detail flex-fill">
       <div className="text-center">
-        <Image src={user.photoURL} roundedCircle fluid className="mb-2" />
-        {/* <h5 className="card-title mb-0">{props.user.displayName}</h5> */}
+        <Image src={props.user.photoURL} roundedCircle fluid className="mb-2" />
+        <h5 className="card-title mb-0">{props.user.displayName}</h5>
         <div className="text-muted mb-2">Web Developer</div>
         <div>
           <Button variant="success" className="mr-2">
